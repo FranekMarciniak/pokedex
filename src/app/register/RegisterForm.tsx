@@ -43,6 +43,7 @@ const RegisterForm = () => {
           description: error?.message ?? "Something went wrong",
           variant: "destructive",
         });
+        return;
       }
       await signIn("credentials", {
         callbackUrl: "/",
