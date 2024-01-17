@@ -9,13 +9,25 @@ datasource db {
 }
 
 model Pokemon {
-    id        Int      @id @default(autoincrement())
-    name      String
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
-    userId    String?
+    id          Int      @id @default(autoincrement())
+    pokedexId   Int      @unique
+    name        String
+    imgUrl      String
+    shinyImgUrl String?
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+    weight      Float?
+    height      Float?
+    hp          Int?
+    attack      Int?
+    defense     Int?
+    spAttack    Int?
+    spDefense   Int?
+    speed       Int?
+    category    String?
+    type        String[]
 
-    @@index([name])
+    @@index([name, pokedexId])
 }
 
 model User {
