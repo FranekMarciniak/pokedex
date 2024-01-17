@@ -2,10 +2,9 @@ import { NextResponse } from "next/server";
 
 export const BCRYPT_SALT_ROUNDS = 12;
 
-export const Ok = (data: Record<string, unknown>) =>
-  NextResponse.json(data, { status: 200 });
+export const Ok = (data: unknown) => NextResponse.json(data, { status: 200 });
 
-export const Created = (data: Record<string, unknown>) =>
+export const Created = (data: unknown) =>
   NextResponse.json(data, { status: 201 });
 
 export const BadRequest = (message: string) =>
