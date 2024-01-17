@@ -15,7 +15,7 @@ import {
 import { Input } from "pokedex/components/ui/input";
 import { useToast } from "pokedex/components/ui/use-toast";
 import { useRegister } from "pokedex/hooks/useRegister";
-import { loginSchema, type RegisterSchema } from "pokedex/lib/auth";
+import { loginSchema, type RegisterSchema } from "pokedex/lib/validators";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 

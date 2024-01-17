@@ -1,4 +1,4 @@
-import { type RegisterSchema } from "pokedex/lib/auth";
+import { type RegisterSchema } from "pokedex/lib/validators";
 
 export const useRegister = () => {
   const register = async ({ email, password }: RegisterSchema) => {
