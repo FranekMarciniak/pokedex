@@ -19,8 +19,8 @@ export async function GET(req: NextRequest) {
     const page = parseInt(parsedQuery.page ?? "1");
     const limit = parseInt(parsedQuery.limit ?? "10");
     const skip = (page - 1) * limit;
-    const orderBy = parsedQuery.sortBy
-      ? { [parsedQuery.sortBy]: parsedQuery.order ?? "asc" }
+    const sortBy = parsedQuery.sortBy
+      ? [{ [parsedQuery.sortBy ?? "pokedexId"]: parsedQuery.order ?? "asc" }]
       : {};
 
     const where = {
@@ -34,14 +34,12 @@ export async function GET(req: NextRequest) {
         lte: parsedQuery.maxWeight,
       },
     };
-
+    const count = await db.pokemon.count({ where });
     const pokemons = await db.pokemon.findMany({
       where,
       skip,
       take: limit,
-      orderBy: orderBy ?? {
-        pokedexId: "asc",
-      },
+      orderBy: sortBy,
       select: {
         name: true,
         height: true,
@@ -49,10 +47,11 @@ export async function GET(req: NextRequest) {
         imgUrl: true,
         pokedexId: true,
         type: true,
+        id: true,
       },
     });
 
-    return Ok(pokemons);
+    return Ok({ result: pokemons, count });
   } catch (error) {
     return InternalServerError("Something went wrong");
   }

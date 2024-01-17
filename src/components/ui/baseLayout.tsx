@@ -7,7 +7,7 @@ type Props = {
 const BaseLayout: FC<Props> = ({ children }) => {
   return (
     <div className=" p-8">
-      <div className="mx-auto sm:max-w-lg md:max-w-2xl lg:max-w-3xl">
+      <div className="mx-auto sm:max-w-xl md:max-w-3xl lg:max-w-4xl">
         {children}
       </div>
     </div>

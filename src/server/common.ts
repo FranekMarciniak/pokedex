@@ -2,6 +2,14 @@ import { NextResponse } from "next/server";
 
 export const BCRYPT_SALT_ROUNDS = 12;
 
+export const getApiUrl = () => {
+  const { NEXT_PUBLIC_URL } = process.env;
+  if (!NEXT_PUBLIC_URL) {
+    throw new Error("NEXT_PUBLIC_URL is not defined");
+  }
+  return NEXT_PUBLIC_URL;
+};
+
 export const Ok = (data: unknown) => NextResponse.json(data, { status: 200 });
 
 export const Created = (data: unknown) =>
