@@ -3,6 +3,9 @@ import "pokedex/styles/globals.css";
 import { Inter } from "next/font/google";
 import { BaseLayout } from "pokedex/components/ui/baseLayout";
 import { Toaster } from "pokedex/components/ui/toaster";
+import { Navbar } from "pokedex/components/ui/navbar";
+import NextAuthProvider from "pokedex/components/ui/nextAuthProvider";
+import { Fragment } from "react";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -22,9 +25,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`font-sans ${inter.variable}`}>
-        <BaseLayout>{children}</BaseLayout>
-        <Toaster />
+      <body className={`font-sans ${inter.variable} min-h-screen`}>
+        <NextAuthProvider>
+          <Fragment>
+            <Navbar />
+            <BaseLayout>{children}</BaseLayout>
+            <Toaster />
+          </Fragment>
+        </NextAuthProvider>
       </body>
     </html>
   );
