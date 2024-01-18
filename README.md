@@ -28,6 +28,7 @@ A Simple app for managing your pokemons
 - [ ]  Improve look of loading components
 - [ ]  Create CRUD UI views 
 - [ ]  Make server errors nicer on the client
+- [ ]  Secure endpoints
 
 
 ## Deployment
@@ -72,3 +73,7 @@ pnpm dev
 ```
 
     
+## Known issues
+
+- Hydration error (only in dev mode)
+- Ugly error when loggin with wrong credentials
