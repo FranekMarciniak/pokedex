@@ -16,10 +16,18 @@ export default async function Page({
 }) {
   return (
     <>
-      <div className="flex w-full justify-between py-6">
-        <PokemonSort />
-        <PokemonSearch />
-      </div>
+      <Suspense
+        fallback={
+          <div>
+            <Loader2 />
+          </div>
+        }
+      >
+        <div className="flex w-full justify-between py-6">
+          <PokemonSort />
+          <PokemonSearch />
+        </div>
+      </Suspense>
       <Suspense
         fallback={
           <div>

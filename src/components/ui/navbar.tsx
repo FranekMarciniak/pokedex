@@ -4,6 +4,7 @@ import { signOut, useSession } from "next-auth/react";
 import NextLink from "next/link";
 import { useToast } from "./use-toast";
 import { useState } from "react";
+import { Loader2 } from "lucide-react";
 
 const Navbar = () => {
   const session = useSession();
@@ -11,11 +12,9 @@ const Navbar = () => {
   return (
     <nav className="  bg-slate-300 shadow-md">
       <div className="mx-auto flex max-w-screen-xl flex-wrap items-center justify-end  p-4">
-        {session.status === "authenticated" ? (
-          <AuthedNavbar />
-        ) : (
-          <UnauthedNavbar />
-        )}
+        {session.status === "authenticated" && <AuthedNavbar />}
+        {session.status === "unauthenticated" && <UnauthedNavbar />}
+        {session.status === "loading" && <Loader2 />}
       </div>
     </nav>
   );

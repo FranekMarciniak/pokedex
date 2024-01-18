@@ -1,7 +1,6 @@
 import { type z } from "zod";
 import { type NextRequest } from "next/server";
-import { InternalServerError, Ok, Unauthorized } from "pokedex/server/common";
-import { getServerAuthSession } from "pokedex/server/auth";
+import { InternalServerError, Ok } from "pokedex/server/common";
 import { db } from "pokedex/server/db";
 import { pokemonQuerySchema } from "pokedex/lib/validators";
 
@@ -9,10 +8,6 @@ type QueryParams = z.infer<typeof pokemonQuerySchema>;
 
 export async function GET(req: NextRequest) {
   try {
-    const session = await getServerAuthSession();
-    if (!session) {
-      return Unauthorized("You must be logged in to access this resource");
-    }
     const params = Object.fromEntries(req.nextUrl.searchParams.entries());
     const parsedQuery: QueryParams = pokemonQuerySchema.parse(params);
 

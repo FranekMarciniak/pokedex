@@ -5,20 +5,20 @@ import { useToast } from "pokedex/components/ui/use-toast";
 
 const usePokemonSearch = () => {
   const router = useRouter();
-  const searchParams = useSearchParams();
+  const params = useSearchParams();
   const pathname = usePathname();
   const [search, setSearch] = useState<string>("");
-  const debouncedValue = useDebounce<string>(search, 500);
+  const debouncedValue = useDebounce<string>(search, 100);
   const { toast } = useToast();
 
   useEffect(() => {
-    const name = searchParams.get("name");
+    const name = params.get("name");
     setSearch(name ?? "");
-  }, [searchParams]);
+  }, [params]);
 
   useEffect(() => {
     const handleSearch = async (name: string) => {
-      const searchParams = new URLSearchParams();
+      const searchParams = new URLSearchParams(params);
       searchParams.set("name", name);
       router.replace(`${pathname}?${searchParams.toString()}`, {
         scroll: false,
@@ -33,7 +33,7 @@ const usePokemonSearch = () => {
         variant: "destructive",
       });
     });
-  }, [debouncedValue, pathname, router, toast]);
+  }, [debouncedValue, params, pathname, router, toast]);
 
   return {
     search,

@@ -51,7 +51,7 @@ const SortOptions = [
 
 const usePokemonSort = () => {
   const router = useRouter();
-  const searchParams = useSearchParams();
+  const params = useSearchParams();
   const pathname = usePathname();
 
   const [sortBy, setSortBy] = useState<SortOption | undefined>();
@@ -61,18 +61,18 @@ const usePokemonSort = () => {
   }, []);
 
   useEffect(() => {
-    const sortBy = searchParams.get("sortBy");
-    const order = searchParams.get("order");
+    const sortBy = params.get("sortBy");
+    const order = params.get("order");
     const id = `${sortBy}&${order}`;
     const sortByOption = getSortBy(id) as SortOption;
     setSortBy(sortByOption);
-  }, [getSortBy, searchParams]);
+  }, [getSortBy, params]);
 
   const handleSortByChange = async (optionId: SortOption["id"]) => {
     const option = getSortBy(optionId) as SortOption;
     setSortBy(option);
 
-    const searchParams = new URLSearchParams();
+    const searchParams = new URLSearchParams(params);
     searchParams.set("sortBy", option.value);
     searchParams.set("order", option.order);
     router.replace(`${pathname}?${searchParams.toString()}`, {

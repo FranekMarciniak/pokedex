@@ -4,9 +4,7 @@ import {
   InternalServerError,
   NotFound,
   Ok,
-  Unauthorized,
 } from "pokedex/server/common";
-import { getServerAuthSession } from "pokedex/server/auth";
 import { db } from "pokedex/server/db";
 import { z } from "zod";
 import { updatePokemonSchema } from "pokedex/lib/validators";
@@ -19,10 +17,6 @@ type Params = z.infer<typeof paramsSchema>;
 
 export async function GET(req: NextRequest, options: { params: Params }) {
   try {
-    const session = await getServerAuthSession();
-    if (!session) {
-      return Unauthorized("You must be logged in to access this resource");
-    }
     const { id } = paramsSchema.parse(options.params);
 
     if (!id) {
@@ -43,10 +37,6 @@ export async function GET(req: NextRequest, options: { params: Params }) {
 
 export async function DELETE(req: NextRequest, options: { params: Params }) {
   try {
-    const session = await getServerAuthSession();
-    if (!session) {
-      return Unauthorized("You must be logged in to access this resource");
-    }
     const { id } = paramsSchema.parse(options.params);
 
     if (!id) {
@@ -67,10 +57,6 @@ export async function DELETE(req: NextRequest, options: { params: Params }) {
 
 export async function PUT(req: NextRequest, options: { params: Params }) {
   try {
-    const session = await getServerAuthSession();
-    if (!session) {
-      return Unauthorized("You must be logged in to access this resource");
-    }
     const { id } = paramsSchema.parse(options.params);
 
     if (!id) {
