@@ -16,7 +16,7 @@ export async function GET(req: NextRequest) {
     const skip = (page - 1) * limit;
     const sortBy = parsedQuery.sortBy
       ? [{ [parsedQuery.sortBy ?? "pokedexId"]: parsedQuery.order ?? "asc" }]
-      : {};
+      : null;
 
     const where = {
       name: parsedQuery.name ? { contains: parsedQuery.name } : undefined,
@@ -34,7 +34,7 @@ export async function GET(req: NextRequest) {
       where,
       skip,
       take: limit,
-      orderBy: sortBy,
+      orderBy: sortBy ? sortBy : [{ pokedexId: "asc" }],
       select: {
         name: true,
         height: true,

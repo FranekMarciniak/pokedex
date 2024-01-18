@@ -9,18 +9,18 @@ export type LoginSchema = z.infer<typeof loginSchema>;
 export type RegisterSchema = LoginSchema;
 
 const basePokemonRequestSchema = {
-  pokedexId: z.number(),
+  pokedexId: z.coerce.number(),
   name: z.string(),
   imgUrl: z.string(),
   shinyImgUrl: z.string().optional(),
-  weight: z.number().optional(),
-  height: z.number().optional(),
-  hp: z.number().optional(),
-  attack: z.number().optional(),
-  defense: z.number().optional(),
-  spAttack: z.number().optional(),
-  spDefense: z.number().optional(),
-  speed: z.number().optional(),
+  weight: z.coerce.number().optional(),
+  height: z.coerce.number().optional(),
+  hp: z.coerce.number().optional(),
+  attack: z.coerce.number().optional(),
+  defense: z.coerce.number().optional(),
+  spAttack: z.coerce.number().optional(),
+  spDefense: z.coerce.number().optional(),
+  speed: z.coerce.number().optional(),
   category: z.string().optional(),
   type: z.array(z.string()),
 };
