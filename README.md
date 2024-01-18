@@ -34,7 +34,7 @@ A Simple app for managing your pokemons
 ## Deployment
 
 This app is hossted on Vercel with CD pipeline.
-Here is a link: [pokedex.vercel.app](https://pokedex-eight-woad.vercel.app/register)
+Here is a link: [pokedex.vercel.app](https://pokedex-eight-woad.vercel.app)
 
 ## Installation
 
