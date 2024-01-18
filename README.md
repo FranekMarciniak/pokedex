@@ -55,12 +55,12 @@ pnpm install
 docker-compose up -d
 ```
 
-```bash 
-pnpm prisma generate && pnpm prisma db push
-```
-
 ```bash
 cp .env.example .env
+```
+
+```bash 
+pnpm prisma generate && pnpm prisma db push
 ```
 
 ```bash
