@@ -27,7 +27,7 @@ A Simple app for managing your pokemons
 - [ ]  Frontend for filtering by weight and height
 - [ ]  Improve look of loading components
 - [ ]  Create CRUD UI views 
-- [ ]  Make server errors nicer on the client
+- [x]  Make server errors nicer on the client
 - [x]  Secure endpoints
 
 
@@ -75,5 +75,4 @@ pnpm dev
     
 ## Known issues
 
-- Hydration error (only in dev mode)
-- Ugly error when loggin with wrong credentials
+- Hydration error (only in dev mode), known bug in nextJS
