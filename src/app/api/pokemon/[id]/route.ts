@@ -19,11 +19,6 @@ type Params = z.infer<typeof paramsSchema>;
 
 export async function GET(req: NextRequest, options: { params: Params }) {
   try {
-    const session = await getServerAuthSession();
-    if (!session) {
-      return Unauthorized("Pokemon with this ID doesn't exist");
-    }
-
     const { id } = paramsSchema.parse(options.params);
 
     if (!id) {

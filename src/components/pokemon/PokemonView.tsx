@@ -71,7 +71,7 @@ export default function PokemonView({ pokemon }: { pokemon: Pokemon }) {
           <div className="space-y-2">
             <h3 className="font-semibold">Type</h3>
             <p className="text-gray-700 dark:text-gray-300">
-              {pokemon.type.map((type) => type).join(", ")}
+              {pokemon?.type?.map((type) => type).join(", ") ?? "Unknown"}
             </p>
           </div>
         </div>

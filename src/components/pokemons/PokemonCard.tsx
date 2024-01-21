@@ -34,9 +34,9 @@ const PokemonCard = ({ pokemon }: Props) => {
             />
           </CardContent>
           <CardFooter className="flex justify-between">
-            {pokemon.type.map((type) => (
+            {pokemon?.type?.map((type) => (
               <Badge key={type}>{capitalize(type)}</Badge>
-            ))}
+            )) ?? <Badge>Unknown</Badge>}
           </CardFooter>
         </Link>
       </div>
