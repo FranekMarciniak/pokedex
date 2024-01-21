@@ -45,9 +45,12 @@ const LoginForm = () => {
       if (!res?.error) {
         router.push("/");
       } else {
+        console.log(res);
+        const error = res?.error ?? "Something went wrong";
+        const status = res?.status;
         toast({
           title: "Error",
-          description: res?.error ?? "Something went wrong",
+          description: status === 401 ? "Invalid credentials" : error,
           variant: "destructive",
         });
       }
