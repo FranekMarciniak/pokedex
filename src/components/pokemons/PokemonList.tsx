@@ -17,7 +17,7 @@ const PokemonList = async ({ searchParams }: Props) => {
 
   return (
     <>
-      <div className=" my-auto grid grid-cols-1 items-center justify-center gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      <div className=" my-auto grid grid-cols-1 justify-items-center gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {pokemons.result.length ? (
           pokemons.result.map((pokemon) => (
             <PokemonCard key={pokemon.pokedexId} pokemon={pokemon} />
