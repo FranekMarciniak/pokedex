@@ -4,10 +4,12 @@ import {
   InternalServerError,
   NotFound,
   Ok,
+  Unauthorized,
 } from "pokedex/server/common";
 import { db } from "pokedex/server/db";
 import { z } from "zod";
 import { updatePokemonSchema } from "pokedex/lib/validators";
+import { getServerAuthSession } from "pokedex/server/auth";
 
 const paramsSchema = z.object({
   id: z.string().transform((a) => (a ? parseInt(a) : undefined)),
@@ -17,6 +19,11 @@ type Params = z.infer<typeof paramsSchema>;
 
 export async function GET(req: NextRequest, options: { params: Params }) {
   try {
+    const session = await getServerAuthSession();
+    if (!session) {
+      return Unauthorized("Pokemon with this ID doesn't exist");
+    }
+
     const { id } = paramsSchema.parse(options.params);
 
     if (!id) {
@@ -37,6 +44,10 @@ export async function GET(req: NextRequest, options: { params: Params }) {
 
 export async function DELETE(req: NextRequest, options: { params: Params }) {
   try {
+    const session = await getServerAuthSession();
+    if (!session) {
+      return Unauthorized("Pokemon with this ID doesn't exist");
+    }
     const { id } = paramsSchema.parse(options.params);
 
     if (!id) {
@@ -57,6 +68,10 @@ export async function DELETE(req: NextRequest, options: { params: Params }) {
 
 export async function PUT(req: NextRequest, options: { params: Params }) {
   try {
+    const session = await getServerAuthSession();
+    if (!session) {
+      return Unauthorized("Pokemon with this ID doesn't exist");
+    }
     const { id } = paramsSchema.parse(options.params);
 
     if (!id) {
