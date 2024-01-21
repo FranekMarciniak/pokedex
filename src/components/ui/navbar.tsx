@@ -1,9 +1,10 @@
 "use client";
-import { Button } from "./button";
+import { Button, buttonVariants } from "./button";
 import { signOut, useSession } from "next-auth/react";
 import NextLink from "next/link";
 import { useToast } from "./use-toast";
 import { useState } from "react";
+import { cn } from "pokedex/lib/utlis";
 
 const Navbar = () => {
   const session = useSession();
@@ -11,6 +12,12 @@ const Navbar = () => {
   return (
     <nav className="  bg-slate-300 shadow-md">
       <div className="mx-auto flex max-w-screen-xl flex-wrap items-center justify-end  p-4">
+        <NextLink
+          href="/"
+          className={cn(buttonVariants({ variant: "outline" }), "mr-auto")}
+        >
+          Pokedex
+        </NextLink>
         {session.status === "authenticated" && <AuthedNavbar />}
         {session.status === "unauthenticated" && <UnauthedNavbar />}
         {session.status === "loading" && "Loading user session..."}
