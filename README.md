@@ -28,7 +28,7 @@ A Simple app for managing your pokemons
 - [ ]  Improve look of loading components
 - [ ]  Create CRUD UI views 
 - [ ]  Make server errors nicer on the client
-- [ ]  Secure endpoints
+- [x]  Secure endpoints
 
 
 ## Deployment
