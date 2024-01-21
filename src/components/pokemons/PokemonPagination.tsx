@@ -15,6 +15,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
+import { type RefAttributes } from "react";
 
 type Props = {
   count: number;
@@ -53,7 +54,14 @@ const PokemonPagination = ({ count }: Props) => {
           <SelectTrigger className="w-[80px]">
             <SelectValue placeholder="Pick sorting option" />
           </SelectTrigger>
-          <SelectContent>
+          <SelectContent
+            ref={(ref) => {
+              if (!ref) return;
+              ref.ontouchstart = (e) => {
+                e.preventDefault();
+              };
+            }}
+          >
             {LimitOptions.map((option) => (
               <SelectItem key={option.label} value={option.value}>
                 {option.label}
